@@ -1,5 +1,5 @@
 import payslipbot as pb
-import send_email as se
+import send_mail as se
 import time
 from datetime import datetime
 import maskpass
@@ -41,7 +41,7 @@ while check_payslip is not True:
             check_payslip.driver.refresh()
             count_check += 1
         else:
-            print('Payslip is on')
+            se.send_email()
             exit()
     check_payslip.driver.close()
         
