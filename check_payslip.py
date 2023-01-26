@@ -1,8 +1,8 @@
 import payslipbot as pb
-import send_mail as se
+import send_sms as sms
 import time
 from datetime import datetime
-import maskpass
+import getpass
 
 currentDateAndTime = datetime.now()
 currentTime = currentDateAndTime.strftime("%H:%M:%S")
@@ -18,7 +18,7 @@ else:
     finalTime = int(finalTime.total_seconds())
     
 employeeNumber = input('Employee number: ')
-employeePass = input('Password: ')
+employeePass = getpass.getpass('Password: ', stream=None)
 dayBirth = int(input('Day of birthday(2 digits): '))
 monthBirth = int(input('Month of birthday(2 digits): '))
 yearBirth = int(input('Year of birthday(2 digits): '))
@@ -41,8 +41,9 @@ while check_payslip is not True:
             check_payslip.driver.refresh()
             count_check += 1
         else:
-            se.send_email()
+            sms.send()
+            check_payslip.driver.close()
             exit()
-    check_payslip.driver.close()
+    
         
         
